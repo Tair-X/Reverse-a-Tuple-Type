@@ -1,0 +1,16 @@
+Reverse a tuple... at the type level.
+
+In other words, if you have
+
+type Foo = [string, number, boolean]
+then Reverse<Foo> should be the type [boolean, number, string]
+
+Since this is type-level programming, success is simply making the program compile.
+
+Test
+
+const test1: Reverse<[1,2,3]> = [3,2,1]
+
+Solution
+
+export type Reverse<T extends Array<unknown>> = T extends [infer X, infer Y, ...infer R] ? [...Reverse<R>, Y, X] : T;
